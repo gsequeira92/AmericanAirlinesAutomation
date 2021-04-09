@@ -3,9 +3,10 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pages.AAHomePage;
 
 public class ChangeLanguageTest {
-    private WebDriver driver;
+    public WebDriver driver;
 
     @BeforeClass
     public static void setupClass(){
@@ -14,14 +15,17 @@ public class ChangeLanguageTest {
 
     @Before
     public void setUpTest(){
-        driver = new ChromeDriver();
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
+            driver.get("https://www.aa.com/");
     }
     @Test
-    public void changePageLanguage() {
+    public void changePageLanguage() throws InterruptedException {
 
-        this.driver.get("https://www.aa.com/");
-        String thing = "actualResult";
-        Assert.assertTrue(true);
+        AAHomePage homePage = new AAHomePage(driver);
+        homePage.changeSiteLanguage("Japón");
+        String newUrl = "https://www.americanairlines.jp/intl/jp/index.jsp?locale=ja_JP";
+        Assert.assertTrue(newUrl.equalsIgnoreCase(driver.getCurrentUrl()));
     }
 
     @After
