@@ -6,7 +6,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
 
+
+
     public static WebDriver selectBrowser(String browser) {
-        return browser.equalsIgnoreCase("firefox") ? new FirefoxDriver() : new ChromeDriver();
+     return null;
     }
 }
