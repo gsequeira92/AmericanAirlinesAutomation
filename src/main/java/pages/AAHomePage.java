@@ -22,15 +22,55 @@ public class AAHomePage {
     @FindBy(xpath = "//input[@id='aa-choose-locale']")
     WebElement submitNewLanguage;
 
+    @FindBy(xpath = "//input[@id='reservationFlightSearchForm.originAirport']")
+    WebElement originTextBox;
+
+    @FindBy(xpath = "//input[@id='reservationFlightSearchForm.destinationAirport']")
+    WebElement destinationTextBox;
+
+    @FindBy(xpath = "//select[@id='flightSearchForm.adultOrSeniorPassengerCount']")
+    WebElement passengersDropdown;
+
+    @FindBy(xpath = "//input[@id='aa-leavingOn']")
+    WebElement departureDateInput;
+
+    @FindBy(xpath = "//input[@id='aa-returningFrom']")
+    WebElement returnDateInput;
+
+    @FindBy(xpath = "//input[@id='flightSearchForm.button.reSubmit']")
+    WebElement submitFlightSearch;
+
+    public void setFlightOrigin(String origin){
+        originTextBox.sendKeys(origin);
+    }
+
+    public void setFlightDestination(String destination){
+        destinationTextBox.sendKeys(destination);
+    }
+
+    public void setPassengers(String passengers){
+        new Select(passengersDropdown).selectByValue(passengers);
+    }
+
+    public void setDepartureDate(String date){
+        departureDateInput.sendKeys(date);
+    }
+
+    public void setReturnDate(String returnDate){
+        returnDateInput.sendKeys(returnDate);
+    }
+
+    public void confirmSearch(){
+        submitFlightSearch.click();
+    }
+
     public void changeSiteLanguage(String language) throws InterruptedException {
 
         pageLanguageMenu.click();
-        Select selectDropdown = new Select(languageCountrySelector);
-        selectDropdown.selectByVisibleText(language);
+         new Select(languageCountrySelector).selectByVisibleText(language);
         Thread.sleep(3000);
-        System.out.println("Se seleccionó el nuevo lenguaje");
         submitNewLanguage.click();
-        System.out.println("Se hizo click en submit");
+
     }
 
 }
