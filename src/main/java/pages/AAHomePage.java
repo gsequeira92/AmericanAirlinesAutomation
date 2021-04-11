@@ -41,6 +41,7 @@ public class AAHomePage {
     WebElement submitFlightSearch;
 
     public void setFlightOrigin(String origin){
+        originTextBox.clear();
         originTextBox.sendKeys(origin);
     }
 
